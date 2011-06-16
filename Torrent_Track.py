@@ -97,6 +97,15 @@ def download_torrent(name, episode, torrent, path):
     f.close()
     return
 
+def send_sms(username, password, cellnumber, filename):
+    '''Sends a SMS message to cellnumber via Google API'''
+    from googlevoice import Voice
+
+    voice = Voice()
+    voice.login(username, password)
+    text = '%s downloaded' % filename
+    voice.send_sms(cellnumber, text)
+    return
 
 def main():
     '''Our main function that does all the work'''
@@ -104,6 +113,11 @@ def main():
     # space for config options
     cachefile = '~/.anime_cache'
     download_path = 'Torrents'
+
+    enable_sms = False
+    gmail_username = 'nobody'
+    gmail_password = 'nobody'
+    cellnumber = '555-555-5555'
     
     ser = series()
     for s in ser:
@@ -128,8 +142,13 @@ def main():
             tor = tor.replace('amp;', '')
             
             # download our torrent file
-            print 'Downloading %s-%s.torrent' % (s['name'], ep_number)
+            filename = '%s-%s.torrent' % (s['name'], ep_number)
+            print 'Downloading %s' % filename
             download_torrent(s['name'], ep_number, tor, download_path)
+            
+            # send SMS if enabled
+            if enable_sms:
+                send_sms(gmail_username, gmail_password, cellnumber, filename)
             add_cache(cachefile, torrent)
 
 # run main if we called directly
