@@ -123,6 +123,9 @@ def main():
                 tor = '%s%s' % (s['prefix'], torrent)
             except KeyError:
                 tor = torrent
+                
+            # some sites tend to use ampersand urls
+            tor = tor.replace('amp;', '')
             
             # download our torrent file
             print 'Downloading %s-%s.torrent' % (s['name'], ep_number)
