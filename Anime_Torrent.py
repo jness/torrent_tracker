@@ -1,0 +1,130 @@
+#!/usr/bin/env python
+import os
+import urllib2
+import pickle
+
+def get_cache(cachefile):
+    '''reads in our cache file'''
+    
+    c = os.path.expanduser(cachefile)
+    if os.path.exists(c):
+        f = open(c, 'rb')
+        cache = pickle.load(f)
+        f.close()
+        return cache
+    else:
+        return list()
+        
+def add_cache(cachefile, torrent):
+    '''appends to the cache file'''
+    cache = get_cache(cachefile)
+    cache.append(torrent)
+    
+    c = os.path.expanduser(cachefile)
+    f = open(c, 'wb')
+    pickle.dump(cache, f)
+    f.close()
+    return
+    
+
+def series():
+    '''Return a list of all configs found in conf_dir,
+    the configuration will contain needed regular expressions and 
+    URLs to grab latest episodes.'''
+    
+    from configobj import ConfigObj
+    from glob import glob
+    path = os.path.split(os.path.abspath(__file__))[0]
+    config_dir = path + '/Series'
+    series = []
+    for _file in glob("%s/*.conf" % config_dir):
+        c = ConfigObj(_file)
+        if not c['enabled'] in [True, 'True', 'true', 1, '1']:
+            continue
+        series.append(c)
+    return series
+
+def episodes(s):
+    '''Returns a list of all episodes greather than
+    or equal to your startnum'''
+
+    from re import compile
+    epis = []
+    u = urllib2.urlopen(s['url'])
+    req = u.read()
+    match = compile(s['regex']).findall(req)
+
+    # only check for episodes higher than our startnum
+    for m in match:
+        for results in m:
+            if results.isdigit():
+                start_ep = results
+
+        if int(start_ep) >= int(s['startnum']):
+            epis.append(m)
+
+    # return all episodes greater than startnum
+    return epis
+
+
+def newepisodes(episodes, cachefile):
+    '''Checks our Pickle Database for new episodes'''
+
+    # read our cache
+    cache = get_cache(cachefile)
+    
+    newepisodes = []
+    for e in episodes:
+        for results in e:
+            if not results.isdigit():
+                ep = results
+
+        # compare episode with cache
+        if ep not in cache:
+            newepisodes.append(e)
+    return newepisodes
+
+def download_torrent(name, episode, torrent, path):
+    '''Downloads torrent files'''
+
+    if not os.path.exists(path):
+        os.makedirs(path)
+    f = open('%s/%s-%s.torrent' % (path, name, episode), 'w')
+    tor = urllib2.urlopen(torrent)
+    f.write(tor.read())
+    f.close()
+
+
+def main():
+    '''Our main function that does all the work'''
+    
+    # space for config options
+    cachefile = '~/.anime_cache'
+    download_path = 'Torrents'
+    
+    ser = series()
+    for s in ser:
+        epis = episodes(s)
+        new = newepisodes(epis, cachefile)
+        
+        for ep in new:
+            # extract our ep_number and torrent url
+            for e in ep:
+                if e.isdigit():
+                    ep_number = e
+                elif not e.isdigit():
+                    torrent = e
+                    
+            # add prefix if we have it configured
+            try:
+                tor = '%s%s' % (s['prefix'], torrent)
+            except KeyError:
+                tor = torrent
+            
+            # download our torrent file
+            print 'Downloading %s-%s.torrent' % (s['name'], ep_number)
+            download_torrent(s['name'], ep_number, tor, download_path)
+            add_cache(cachefile, torrent)
+
+if '__main__' == __name__:
+    main()
