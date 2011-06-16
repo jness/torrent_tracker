@@ -1,0 +1,22 @@
+== Torrent Tracker
+
+	Torrent_Tracker is a very simple Python tool for download torrents.
+	The heart of Torrent_Tracker is the configuration located in Series/.
+
+== Configuration
+	
+Below we have a basic Series config file:
+
+	enabled = True
+	name = Naruto
+	url = http://takafansubs.com/?p=torrents
+	prefix = http://takafansubs.com/
+	regex = <a href='(torrents/.*.torrent)'>\[Taka\] Naruto Shippuuden (\d*) 720p</a>
+	startnum = 210
+
+<b>enabled</b>: Simple enough enables or disables this series.
+<b>name</b>: Name of your series, should not contain spaces.
+<b>url</b>: The url we will crawl searching for torrents.
+<b>prefix</b>: Optional configuration to prepend to found torrents, this is useful if the site does not give absolute URLs.
+<b>regex</b>: Regular expression to find our torrents. There should be two () blocks, one around the url and on around the episode number.
+<b>startnum</b>: A starting point, torrent at or above this number will be downloaded
