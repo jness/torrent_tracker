@@ -1,7 +1,7 @@
 == Torrent Tracker
 
-	Torrent_Tracker is a very simple Python tool for download torrents.
-	The heart of Torrent_Tracker is the configuration located in Series/.
+Torrent_Tracker is a very simple Python tool for download torrents.
+The heart of Torrent_Tracker is the configuration located in Series/.
 
 == Configuration
 	
