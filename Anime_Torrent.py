@@ -4,7 +4,8 @@ import urllib2
 import pickle
 
 def get_cache(cachefile):
-    '''reads in our cache file'''
+    '''reads in our cache file and returns results if found,
+    if a cache file does not exist return a empty list'''
     
     c = os.path.expanduser(cachefile)
     if os.path.exists(c):
@@ -16,7 +17,8 @@ def get_cache(cachefile):
         return list()
         
 def add_cache(cachefile, torrent):
-    '''appends to the cache file'''
+    '''appends to the cache file which was returned from get_cache()'''
+    
     cache = get_cache(cachefile)
     cache.append(torrent)
     
@@ -85,7 +87,7 @@ def newepisodes(episodes, cachefile):
     return newepisodes
 
 def download_torrent(name, episode, torrent, path):
-    '''Downloads torrent files'''
+    '''Downloads torrent files to path/name-episode.torrent'''
 
     if not os.path.exists(path):
         os.makedirs(path)
@@ -93,6 +95,7 @@ def download_torrent(name, episode, torrent, path):
     tor = urllib2.urlopen(torrent)
     f.write(tor.read())
     f.close()
+    return
 
 
 def main():
@@ -126,5 +129,6 @@ def main():
             download_torrent(s['name'], ep_number, tor, download_path)
             add_cache(cachefile, torrent)
 
+# run main if we called directly
 if '__main__' == __name__:
     main()
