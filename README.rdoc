@@ -3,7 +3,7 @@
 <b>** WARNING **</b> This Application is for education purposes and is not meant to be used to illegally download TV Shows or Movies.
 
 == License
-This software is license under the GPLv3:`
+This software is license under the GPLv3:
 http://www.gnu.org/licenses/gpl-3.0.html
 
 == Requirements
