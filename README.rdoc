@@ -35,7 +35,7 @@ Below we have a sample Series config file:
 
 == SMS Support
 
-Torrent_Tracker can send SMS notification using the pygooglevoice module, 
+Torrent_Tracker can send SMS notification using the <b>pygooglevoice</b> module, 
 you will first need to <b>easy_insatll</b> or <b>pip</b> pygooglevoice.
 
 After you have the module installed edit <b>Torrent_Tracker.py</b>,
