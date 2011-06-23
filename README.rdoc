@@ -2,17 +2,17 @@
 
 <b>** WARNING **</b> This Application is for education purposes and is not meant to be used to illegally download TV Shows or Movies.
 
-Torrent_Tracker is a very simple Python tool for download torrents.
-The heart of Torrent_Tracker is the configuration located in Series/.
-
 == Requirements
+
 Torrent_Tracker requires the 3rd party Python module <b>configobj</b>,
 go ahead and <b>easy_install</b> or <b>pip</b> that module.
 
-
 == Configuration
+
+Torrent_Tracker is a very simple Python tool for download torrents.
+The heart of Torrent_Tracker is the configuration located in Series/.
 	
-Below we have a basic Series config file:
+Below we have a sample Series config file:
 
 	enabled = True
 	name = Naruto
@@ -32,7 +32,6 @@ Below we have a basic Series config file:
 <b>regex</b>: Regular expression to find our torrents. There should be two () blocks, one around the url and on around the episode number.
 
 <b>startnum</b>: A starting point, torrent at or above this number will be downloaded
-
 
 == SMS Support
 
