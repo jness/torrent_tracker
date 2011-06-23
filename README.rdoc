@@ -1,9 +1,14 @@
 == Torrent Tracker
 
+<b>** WARNING **</b> This Application is for education purposes and is not meant to be used to illegally download TV Shows or Movies.
+
 Torrent_Tracker is a very simple Python tool for download torrents.
 The heart of Torrent_Tracker is the configuration located in Series/.
 
-<b>** WARNING **</b> This Application is for education purposes and is not meant to be used to illegally download TV Shows or Movies.
+== Requirements
+Torrent_Tracker requires the 3rd party Python module <b>configobj</b>,
+go ahead and <b>easy_install</b> or <b>pip</b> that module.
+
 
 == Configuration
 	
@@ -27,3 +32,21 @@ Below we have a basic Series config file:
 <b>regex</b>: Regular expression to find our torrents. There should be two () blocks, one around the url and on around the episode number.
 
 <b>startnum</b>: A starting point, torrent at or above this number will be downloaded
+
+
+== SMS Support
+
+Torrent_Tracker can send SMS notification using the pygooglevoice module, 
+you will first need to <b>easy_insatll</b> or <b>pip</b> pygooglevoice.
+
+After you have the module installed edit <b>Torrent_Tracker.py</b>,
+towards the bottom within the main function you will see the below config options.
+
+
+      enable_sms = False
+      gmail_username = 'nobody'
+      gmail_password = 'nobody'
+      cellnumber = '555-555-5555'
+
+Go ahead and set <b>enable_sms</b> to True and fill in your Google Voice info, 
+then put in the cellnumber you with to notify.
