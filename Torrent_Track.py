@@ -115,7 +115,7 @@ def main():
     '''Our main function that does all the work'''
     
     # space for config options
-    cachefile = '~/.anime_cache'
+    cachefile = '~/.torrent_cache'
     download_path = 'Torrents'
 
     enable_sms = False
