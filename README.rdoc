@@ -3,7 +3,7 @@
 Torrent_Tracker is a very simple Python tool for download torrents.
 The heart of Torrent_Tracker is the configuration located in Series/.
 
-** WARNING **  This Application is for education purposes and is not meant to be used 
+<b>** WARNING **</b>  This Application is for education purposes and is not meant to be used 
 	       to illegally download TV Shows or Movies.
 
 == Configuration
