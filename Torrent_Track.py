@@ -84,6 +84,10 @@ def newepisodes(episodes, cachefile):
         # compare episode with cache
         if ep not in cache:
             newepisodes.append(e)
+
+    # be sure to remove any duplicates
+    newepisodes = list(set(newepisodes))
+
     return newepisodes
 
 def download_torrent(name, episode, torrent, path):
