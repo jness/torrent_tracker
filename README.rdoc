@@ -37,7 +37,7 @@ Below we have a sample Series config file:
 
 <b>startnum</b>: A starting point, torrent at or above this number will be downloaded
 
-== SMS Support
+== SMS Notifications
 
 Torrent_Tracker can send SMS notification using the <b>pygooglevoice</b> module, 
 you will first need to <b>easy_insatll</b> or <b>pip</b> pygooglevoice.
@@ -45,10 +45,23 @@ you will first need to <b>easy_insatll</b> or <b>pip</b> pygooglevoice.
 After you have the module installed edit <b>Config/torrent_tracker.conf</b>,
 towards the bottom you notice a portion for SMS configuration.
 
-      enable_sms = False
-      gmail_username = 'nobody'
-      gmail_password = 'nobody'
-      cellnumber = '555-555-5555'
+	# Configuration for the SMS notifier
+	enable_sms = False
+	gmail_username = nobody@gmail.com
+	gmail_password = empty
+	cellnumber = 555-555-5555
 
 Go ahead and set <b>enable_sms</b> to True and fill in your Google Voice info, 
 then put in the cellnumber you wish to notify.
+
+== Email Notifications
+
+Torrent_Tracker is also able to send Email notification using python's smtplib.
+To configure this feature simply edit the <b>Config/torrent_tracker.conf</b>
+and enable the feature:
+
+	# Configuration for the Email notifer
+	enable_email = False
+	toaddr = nobody@nowhere.com
+	fromaddr = nobody@nowhere.com
+	host = localhost
