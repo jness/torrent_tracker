@@ -65,3 +65,16 @@ and enable the feature:
 	toaddr = nobody@nowhere.com
 	fromaddr = nobody@nowhere.com
 	host = localhost
+
+== Running Torrent_Tracker
+
+Once you have torrent_tracker configured you can run the tool using <b>Tracker.py</b>:
+
+	$ ./Track.py 
+	Downloading Naruto-216.torrent
+
+You should now have a shiny new torrent file sitting in your <b>download_path</b>:
+
+	$ ls -l Torrents/
+	total 32
+	-rw-r--r--  1 jeffreyness  staff  12689 Jun 27 10:22 Naruto-216.torrent
