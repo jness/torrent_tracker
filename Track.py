@@ -7,7 +7,7 @@ from Libs.torrent_tracking import series, episodes, newepisodes, download_torren
 def main():
     '''Our main function that does all the work'''
 
-    # read our config
+    newfiles = []
     c = get_config()
     
     ser = series()
@@ -37,26 +37,28 @@ def main():
             print 'Downloading %s' % filename
             download_torrent(s['name'], ep_number, tor, c['download_path'])
 
-            # send Email if enabled
-            if c['enable_email'] == 'True':
-                from Libs.emailnotify import send_email
-                send_email(
-                    c['toaddr'],
-                    c['fromaddr'],
-                    filename,
-                    c['host'])
-
-            # send SMS if enabled, this modular 
-            # requires pygooglevoice
-            if c['enable_sms'] == 'True':
-                from Libs.smsnotify import send_sms
-                send_sms(
-                    c['gmail_username'], 
-                    c['gmail_password'], 
-                    c['cellnumber'], 
-                    filename)
-
             add_cache(c['cachefile'], torrent)
+            newfiles.append(filename)
+
+    # Notifications
+    # send Email if enabled
+    if c['enable_email'] == 'True':
+        from Libs.emailnotify import send_email
+        send_email(
+            c['toaddr'],
+            c['fromaddr'],
+            newfiles,
+            c['host'])
+
+    # send SMS if enabled, this modular 
+    # requires pygooglevoice
+    if c['enable_sms'] == 'True':
+        from Libs.smsnotify import send_sms
+        send_sms(
+            c['gmail_username'], 
+            c['gmail_password'], 
+            c['cellnumber'], 
+            newfiles)
 
 # run main if we called directly
 if '__main__' == __name__:

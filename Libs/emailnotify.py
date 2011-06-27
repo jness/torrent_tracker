@@ -1,4 +1,4 @@
-def send_email(toaddr, fromaddr, filename, host):
+def send_email(toaddr, fromaddr, filenames, host):
     '''Sends a Email notification'''
     import smtplib
     from socket import error
@@ -7,7 +7,9 @@ def send_email(toaddr, fromaddr, filename, host):
     header = ("From: %s\r\nTo: %s\r\nSubject: %s\r\n"
         % (fromaddr, toaddr, 'Torrent Tracker'))
 
-    body = '%s downloaded' % filename
+    body = str()
+    for f in filenames:
+        body = body + '%s downloaded\n' % f
     msg = header + body
 
     try:
