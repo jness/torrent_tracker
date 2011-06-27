@@ -42,9 +42,8 @@ Below we have a sample Series config file:
 Torrent_Tracker can send SMS notification using the <b>pygooglevoice</b> module, 
 you will first need to <b>easy_insatll</b> or <b>pip</b> pygooglevoice.
 
-After you have the module installed edit <b>Torrent_Tracker.py</b>,
-towards the bottom within the main function you will see the below config options.
-
+After you have the module installed edit <b>Config/torrent_tracker.conf</b>,
+towards the bottom you notice a portion for SMS configuration.
 
       enable_sms = False
       gmail_username = 'nobody'
@@ -52,4 +51,4 @@ towards the bottom within the main function you will see the below config option
       cellnumber = '555-555-5555'
 
 Go ahead and set <b>enable_sms</b> to True and fill in your Google Voice info, 
-then put in the cellnumber you with to notify.
+then put in the cellnumber you wish to notify.
