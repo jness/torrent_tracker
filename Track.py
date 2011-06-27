@@ -36,10 +36,20 @@ def main():
             filename = '%s-%s.torrent' % (s['name'], ep_number)
             print 'Downloading %s' % filename
             download_torrent(s['name'], ep_number, tor, c['download_path'])
-            
-            # send SMS if enabled
+
+            # send Email if enabled
+            if c['enable_email'] == 'True':
+                from Libs.emailnotify import send_email
+                send_email(
+                    c['toaddr'],
+                    c['fromaddr'],
+                    filename,
+                    c['host'])
+
+            # send SMS if enabled, this modular 
+            # requires pygooglevoice
             if c['enable_sms'] == 'True':
-                from Libs.sms import send_sms
+                from Libs.smsnotify import send_sms
                 send_sms(
                     c['gmail_username'], 
                     c['gmail_password'], 
