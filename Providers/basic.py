@@ -1,3 +1,6 @@
+# This Provider can be used for any site that
+# has a list of direct download torrent links
+
 import urllib2
 from re import compile 
 

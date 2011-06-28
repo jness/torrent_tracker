@@ -16,7 +16,7 @@ go ahead and <b>easy_install</b> or <b>pip</b> that module.
 Torrent_Tracker is a very simple Python tool for download torrents.
 The heart of Torrent_Tracker is the configuration located in Series/.
 	
-Below we have a sample Series config file:
+Below we have a sample Series config file using the <b>basic</b> Provider:
 
 	enabled = True
 	name = Naruto

@@ -1,3 +1,6 @@
+# This is an addtional provider for http://www.demonoid.me/
+# which supports checking a users RSS feed for new torrents
+
 import urllib2
 import re
 
