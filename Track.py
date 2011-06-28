@@ -20,7 +20,7 @@ def main():
         episodes = sys.modules[provider].episodes
         epis = episodes(s)
 
-        new = newepisodes(epis, c['cachefile'])
+        new = newepisodes(epis, c['cachefile'], s['name'])
         
         for ep in new:
             # extract our ep_number and torrent url
@@ -44,7 +44,7 @@ def main():
             print 'Downloading %s' % filename
             download_torrent(s['name'], ep_number, tor, c['download_path'])
 
-            add_cache(c['cachefile'], torrent)
+            add_cache(c['cachefile'], (torrent, s['name'] + ep_number))
             newfiles.append(filename)
 
     # Notifications

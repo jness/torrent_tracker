@@ -22,7 +22,7 @@ def series():
         series.append(c)
     return series
 
-def newepisodes(episodes, cachefile):
+def newepisodes(episodes, cachefile, name):
     '''Checks the episode against our pickle database 
     to determine if this is a new episodes'''
 
@@ -32,11 +32,16 @@ def newepisodes(episodes, cachefile):
     newepisodes = []
     for e in episodes:
         for results in e:
-            if not results.isdigit():
-                ep = results
+            if results.isdigit():
+                epnum = results
+                episodename = name + epnum
 
         # compare episode with cache
-        if ep not in cache:
+        new = True
+        for c in cache:
+            if episodename in c:
+                new = False
+        if new:
             newepisodes.append(e)
 
     # be sure to remove any duplicates
