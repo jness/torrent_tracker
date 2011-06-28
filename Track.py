@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 
+import sys
 from Libs.config import get_config
 from Libs.cache import get_cache, add_cache
-from Libs.torrent_tracking import series, episodes, newepisodes, download_torrent
+from Libs.torrent_tracking import series, newepisodes, download_torrent
 
 def main():
     '''Our main function that does all the work'''
@@ -12,7 +13,13 @@ def main():
     
     ser = series()
     for s in ser:
+
+        # load the correct module
+        provider = 'Providers.%s' % s['provider']
+        __import__(provider)
+        episodes = sys.modules[provider].episodes
         epis = episodes(s)
+
         new = newepisodes(epis, c['cachefile'])
         
         for ep in new:

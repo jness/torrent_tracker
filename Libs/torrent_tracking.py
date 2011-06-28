@@ -22,35 +22,13 @@ def series():
         series.append(c)
     return series
 
-def episodes(s):
-    '''Returns a list of all episodes greather than
-    or equal to your startnum'''
-
-    epis = []
-    u = urllib2.urlopen(s['url'])
-    req = u.read()
-    match = compile(s['regex']).findall(req)
-
-    # only check for episodes higher than our startnum
-    for m in match:
-        for results in m:
-            if results.isdigit():
-                start_ep = results
-
-        if int(start_ep) >= int(s['startnum']):
-            epis.append(m)
-
-    # return all episodes greater than startnum
-    return epis
-
-
 def newepisodes(episodes, cachefile):
     '''Checks the episode against our pickle database 
     to determine if this is a new episodes'''
 
     # read our cache
     cache = get_cache(cachefile)
-    
+   
     newepisodes = []
     for e in episodes:
         for results in e:
