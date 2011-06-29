@@ -45,11 +45,11 @@ you will first need to <b>easy_insatll</b> or <b>pip</b> pygooglevoice.
 After you have the module installed edit <b>Config/torrent_tracker.conf</b>,
 towards the bottom you notice a portion for SMS configuration.
 
-	# Configuration for the SMS notifier
-	enable_sms = False
-	gmail_username = nobody@gmail.com
-	gmail_password = empty
-	cellnumber = 555-555-5555
+        # Configuration for the SMS notifier
+        enable_sms = False
+        gmail_username = nobody@gmail.com
+        gmail_password = empty
+        cellnumber = 555-555-5555
 
 Go ahead and set <b>enable_sms</b> to True and fill in your Google Voice info, 
 then put in the cellnumber you wish to notify.
@@ -60,26 +60,26 @@ Torrent_Tracker is also able to send Email notification using python's smtplib.
 To configure this feature simply edit the <b>Config/torrent_tracker.conf</b>
 and enable the feature:
 
-	# Configuration for the Email notifer
-	enable_email = False
-	toaddr = nobody@nowhere.com
-	fromaddr = nobody@nowhere.com
-	host = localhost
+        # Configuration for the Email notifer
+        enable_email = False
+        toaddr = nobody@nowhere.com
+        fromaddr = nobody@nowhere.com
+        host = localhost
 
 == Running Torrent_Tracker
 
 Once you have torrent_tracker configured you can run the tool using <b>Tracker.py</b>:
 
-	$ ./Track.py 
-	Downloading Naruto-216.torrent
+        $ ./Track.py 
+        Downloading Naruto-216.torrent
 
 You should now have a shiny new torrent file sitting in your <b>download_path</b>:
 
-	$ ls -l Torrents/
-	total 32
-	-rw-r--r--  1 nobody  nobody  12689 Jun 27 10:22 Naruto-216.torrent
+        $ ls -l Torrents/
+        total 32
+        -rw-r--r--  1 nobody  nobody  12689 Jun 27 10:22 Naruto-216.torrent
 
 Along with a updated cache file:
 
-	$ ls -l ~/.torrent_cache 
-	-rw-r--r--  1 nobody  nobody  92 Jun 27 10:22 /home/nobody/.torrent_cache
+        $ ls -l ~/.torrent_cache 
+        -rw-r--r--  1 nobody  nobody  92 Jun 27 10:22 /home/nobody/.torrent_cache
