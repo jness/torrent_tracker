@@ -29,7 +29,7 @@ def newepisodes(episodes, cachefile, name):
     # read our cache
     cache = get_cache(cachefile)
    
-    newepisodes = []
+    newepisodes = {}
     for e in episodes:
         for results in e:
             if results.isdigit():
@@ -42,10 +42,9 @@ def newepisodes(episodes, cachefile, name):
             if episodename in c:
                 new = False
         if new:
-            newepisodes.append(e)
+            newepisodes[epnum] = e
 
-    # be sure to remove any duplicates
-    newepisodes = list(set(newepisodes))
+    newepisodes = list(newepisodes.values())
 
     return newepisodes
 

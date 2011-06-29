@@ -32,7 +32,7 @@ def episodes(s):
     for item in items:
         epnum = re.search('%s S[0]?%sE([0]?\d*)' % (s['searchname'], s['season']), item[0], re.IGNORECASE)
         if epnum:
-            if epnum.group(1) >= int(s['startnum']):
+            if int(epnum.group(1)) >= int(s['startnum']):
                 u = item[1]
                 req = urllib2.urlopen(u)
                 page = req.read()
