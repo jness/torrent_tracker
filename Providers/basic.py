@@ -2,6 +2,7 @@
 # has a list of direct download torrent links
 
 from StringIO import StringIO
+import gzip
 import urllib2
 from re import compile 
 
