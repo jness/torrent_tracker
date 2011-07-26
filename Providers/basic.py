@@ -1,6 +1,7 @@
 # This Provider can be used for any site that
 # has a list of direct download torrent links
 
+from StringIO import StringIO
 import urllib2
 from re import compile 
 
@@ -10,9 +11,16 @@ def episodes(s):
     downloads.'''
 
     epis = []
-    u = urllib2.urlopen(s['url'])
-    req = u.read()
-    match = compile(s['regex']).findall(req)
+    request = urllib2.Request(s['url'])
+    request.add_header('Accept-encoding', 'gzip')
+    response = urllib2.urlopen(request)
+    if response.info().get('Content-Encoding') == 'gzip':
+        buf = StringIO( response.read())
+        f = gzip.GzipFile(fileobj=buf)
+        data = f.read()
+    else:
+        data = response.read()
+    match = compile(s['regex']).findall(data)
 
     # only check for episodes higher than our startnum
     for m in match:
