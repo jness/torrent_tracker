@@ -56,6 +56,7 @@ def download_torrent(name, episode, torrent, path):
 
     if not os.path.exists(path):
         os.makedirs(path)
+    print 'Attempting to download %s/%s-%s.torrent' % (path, name, episode)
     f = open('%s/%s-%s.torrent' % (path, name, episode), 'w')
     tor = urllib2.urlopen(torrent)
     f.write(tor.read())
