@@ -26,6 +26,11 @@ def main():
         new = newepisodes(epis, c['cachefile'], s['name'])
         
         for ep in new:
+
+            # check our data is what we expect
+            if type(ep) != tuple:
+                raise Exception('Your regular expression needs to pull a URL and unique episode number')
+
             print 'Found new episode!', ep
             # extract our ep_number and torrent url
             for e in ep:
