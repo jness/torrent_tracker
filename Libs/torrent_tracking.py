@@ -51,15 +51,18 @@ def newepisodes(episodes, cachefile, name):
 def download_torrent(name, episode, torrent, path):
     '''downloads torrent files to path/name-episodenum.torrent'''
     
-    print 'Attempting to download %s' % (torrent)
-
     # take user based paths
     path = os.path.expanduser(path)
 
     if not os.path.exists(path):
         os.makedirs(path)
     f = open('%s/%s-%s.torrent' % (path, name, episode), 'w')
-    tor = urllib2.urlopen(torrent)
-    f.write(tor.read())
+    try:
+        tor = urllib2.urlopen(torrent)
+        f.write(tor.read())
+    except urllib2.HTTPError as e
+        status = '%s %s url was %s' % (e.getcode(), e.msg, torrent)
+    else:
+        status = 'Downloaded %s.torrent from %s' % (episode, torrent)
     f.close()
-    return
+    return status

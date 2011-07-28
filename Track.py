@@ -44,8 +44,9 @@ def main():
             
             # download our torrent file
             filename = '%s-%s.torrent' % (s['name'], ep_number)
-            print 'Downloading %s' % filename
-            download_torrent(s['name'], ep_number, tor, c['download_path'])
+            print 'Attempting to Download %s' % filename
+            d = download_torrent(s['name'], ep_number, tor, c['download_path'])
+            print d
 
             add_cache(c['cachefile'], (torrent, s['name'] + ep_number))
             newfiles.append(filename)
