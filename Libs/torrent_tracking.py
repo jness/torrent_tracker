@@ -5,6 +5,7 @@ from cache import get_cache
 from re import compile
 from configobj import ConfigObj
 from glob import glob
+from config import get_config
 
 def series():
     '''Return a list of all configs found in conf_dir,
@@ -50,13 +51,14 @@ def newepisodes(episodes, cachefile, name):
 
 def download_torrent(name, episode, torrent, path):
     '''downloads torrent files to path/name-episodenum.torrent'''
+    c = get_config()
     
     # take user based paths
     path = os.path.expanduser(path)
 
     if not os.path.exists(path):
         os.makedirs(path)
-    f = open('%s/%s-%s.torrent' % (path, name, episode), 'w')
+    f = open('%s/%s-%s.%s' % (path, name, episode, c['file_extension']), 'w')
     try:
         tor = urllib2.urlopen(torrent)
         f.write(tor.read())
