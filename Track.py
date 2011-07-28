@@ -19,13 +19,14 @@ def main():
         __import__(provider)
         episodes = sys.modules[provider].episodes
 
-        print 'Searching for episodes in %s' % s['name']
+        print '\n'
+        print 'Searching for episodes in %s using provider %s' % (s['name'], s['provider']) 
         epis = episodes(s)
 
         new = newepisodes(epis, c['cachefile'], s['name'])
         
         for ep in new:
-            print 'Found new episode!'
+            print 'Found new episode!', ep
             # extract our ep_number and torrent url
             for e in ep:
                 if e.isdigit():
