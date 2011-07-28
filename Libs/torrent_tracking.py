@@ -65,6 +65,6 @@ def download_torrent(name, episode, torrent, path):
     except urllib2.HTTPError as e:
         status = '%s %s url was %s' % (e.getcode(), e.msg, torrent)
     else:
-        status = 'Downloaded %s.torrent from %s' % (episode, torrent)
+        status = 'Downloaded %s%s from %s' % (episode, ,c['file_extension'], torrent)
     f.close()
     return status
