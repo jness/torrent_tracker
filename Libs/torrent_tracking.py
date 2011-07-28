@@ -60,7 +60,7 @@ def download_torrent(name, episode, torrent, path):
     try:
         tor = urllib2.urlopen(torrent)
         f.write(tor.read())
-    except urllib2.HTTPError as e
+    except urllib2.HTTPError as e:
         status = '%s %s url was %s' % (e.getcode(), e.msg, torrent)
     else:
         status = 'Downloaded %s.torrent from %s' % (episode, torrent)
