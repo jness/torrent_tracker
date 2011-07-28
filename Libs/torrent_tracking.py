@@ -58,13 +58,13 @@ def download_torrent(name, episode, torrent, path):
 
     if not os.path.exists(path):
         os.makedirs(path)
-    f = open('%s/%s-%s.%s' % (path, name, episode, c['file_extension']), 'w')
+    f = open('%s/%s-%s%s' % (path, name, episode, c['file_extension']), 'w')
     try:
         tor = urllib2.urlopen(torrent)
         f.write(tor.read())
     except urllib2.HTTPError as e:
         status = '%s %s url was %s' % (e.getcode(), e.msg, torrent)
     else:
-        status = 'Downloaded %s%s from %s' % (episode, ,c['file_extension'], torrent)
+        status = 'Downloaded %s%s from %s' % (episode, c['file_extension'], torrent)
     f.close()
     return status

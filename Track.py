@@ -44,7 +44,7 @@ def main():
             tor = tor.replace('amp;', '')
             
             # download our torrent file
-            filename = '%s-%s.%s' % (s['name'], ep_number, c['file_extension'])
+            filename = '%s-%s%s' % (s['name'], ep_number, c['file_extension'])
             print 'Attempting to Download %s' % filename
             d = download_torrent(s['name'], ep_number, tor, c['download_path'])
             print d
