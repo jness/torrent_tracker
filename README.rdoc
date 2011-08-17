@@ -18,16 +18,19 @@ The heart of Torrent_Tracker is the configuration located in Series/.
 	
 Below we have a sample Series config file using the <b>basic</b> Provider:
 
-        enabled = True
-        name = Naruto
-        url = http://takafansubs.com/?p=torrents
-        prefix = http://takafansubs.com/
-        regex = <a href='(torrents/.*.torrent)'>\[Taka\] Naruto Shippuuden (\d*) 720p</a>
-        startnum = 210
+	enabled = False
+	name = Naruto
+	provider = basic
+	url = http://takafansubs.com/?p=torrents
+	prefix = http://takafansubs.com/
+	regex = <a href='(torrents/.*.torrent)'>\[Taka\] Naruto Shippuuden (\d*) 720p</a>
+	startnum = 1
 
 <b>enabled</b>: Simple enough enables or disables this series.
 
 <b>name</b>: Name of your series, should not contain spaces.
+
+<b>provider</b>: The provider used for this series, custom providers can be created and called from here.
 
 <b>url</b>: The url we will crawl searching for torrents.
 
