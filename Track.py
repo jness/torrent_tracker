@@ -59,23 +59,25 @@ def main():
 
     # Notifications
     # send Email if enabled
-    if c['enable_email'] == 'True':
-        from Libs.emailnotify import send_email
-        send_email(
-            c['toaddr'],
-            c['fromaddr'],
-            newfiles,
-            c['host'])
+    if newfiles:
+        if c['enable_email'] == 'True':
+            from Libs.emailnotify import send_email
+            send_email(
+                c['toaddr'],
+                c['fromaddr'],
+                newfiles,
+                c['host'])
 
     # send SMS if enabled, this modular 
     # requires pygooglevoice
-    if c['enable_sms'] == 'True':
-        from Libs.smsnotify import send_sms
-        send_sms(
-            c['gmail_username'], 
-            c['gmail_password'], 
-            c['cellnumber'], 
-            newfiles)
+    if newfiles:
+        if c['enable_sms'] == 'True':
+            from Libs.smsnotify import send_sms
+            send_sms(
+                c['gmail_username'], 
+                c['gmail_password'], 
+                c['cellnumber'], 
+                newfiles)
 
 # run main if we called directly
 if '__main__' == __name__:
